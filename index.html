@@ -1,23 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>メントスコーラゲーム</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>メントスコーラゲーム</h1>
+  <div id="app">
+    <!-- タイトル画面 -->
+    <section id="titleScreen" class="screen center">
+      <div class="titleCard">
+        <img class="logo" src="assets/bg.jpg" alt="" onerror="this.style.display='none'">
+        <h1>メントスコーラ</h1>
+        <p class="sub">画面をタップして始める</p>
+        <button id="titleTap" class="big">タップしてスタート</button>
+        <p class="hint">初回は名前登録が求められます</p>
+      </div>
+    </section>
 
-<div id="nameInput">
-  名前を入力: <input type="text" id="playerName" placeholder="名前を入力">
-  <button id="saveName">登録</button>
-</div>
+    <!-- 名前入力モーダル -->
+    <div id="nameModal" class="modal hidden">
+      <div class="modalCard">
+        <h2>名前を入力してね</h2>
+        <input id="playerName" type="text" placeholder="ニックネーム（例: わたあめ）" maxlength="20">
+        <div class="row">
+          <button id="saveName" class="primary">登録して開始</button>
+          <button id="skipName" class="ghost">後で設定</button>
+        </div>
+      </div>
+    </div>
 
-<canvas id="gameCanvas" width="400" height="600"></canvas>
+    <!-- ゲーム画面 -->
+    <section id="gameScreen" class="screen hidden">
+      <div class="hud">
+        <div class="left">
+          <div class="nameBadge" id="nameBadge">---</div>
+        </div>
+        <div class="center">
+          <div class="timer" id="timer">10</div>
+        </div>
+        <div class="right">
+          <div class="score" id="score">0</div>
+        </div>
+      </div>
 
-<div id="scoreBoard">スコア: 0</div>
-<button id="postBtn" style="display:none;">Xに結果を投稿</button>
+      <canvas id="gameCanvas" width="420" height="720"></canvas>
+
+      <div class="controls">
+        <button id="restartBtn" class="ghost small">タイトルに戻る</button>
+      </div>
+    </section>
+
+    <!-- 結果/ポスト領域 -->
+    <section id="resultPanel" class="panel hidden">
+      <div class="resultCard">
+        <h3>結果</h3>
+        <p id="finalScore">スコア: 0</p>
+        <div class="buttons">
+          <button id="fetchRankBtn" class="primary">ランキングを取得して投稿用準備</button>
+          <button id="shareBtn" class="ghost" style="display:none;">Xに投稿する</button>
+        </div>
+        <ol id="rankingList" class="ranking"></ol>
+      </div>
+    </section>
+  </div>
 
 <script src="script.js"></script>
 </body>
