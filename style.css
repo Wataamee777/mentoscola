@@ -1,17 +1,81 @@
-body {
-  font-family: sans-serif;
-  text-align: center;
-  background: #f0f8ff;
+:root{
+  --bg:#0f172a;
+  --card:#0b1220;
+  --accent:#ffb86b;
+  --muted:#9aa4b2;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.03);
 }
 
-#gameCanvas {
-  border: 2px solid #000;
-  display: block;
-  margin: 20px auto;
-  background: #87ceeb; /* 空っぽ背景 */
-}
+/* reset-ish */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:linear-gradient(180deg,#071024 0%, #0b1220 60%);color:#e6eef8}
 
-#scoreBoard {
-  font-size: 1.5rem;
-  margin-top: 10px;
+.center{display:flex;align-items:center;justify-content:center}
+.screen{min-height:100vh;padding:28px}
+
+/* タイトルカード */
+.titleCard{
+  width: min(680px, 92%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius:16px;
+  padding:28px;
+  text-align:center;
+  box-shadow: 0 8px 30px rgba(3,7,18,0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.titleCard h1{
+  font-size: clamp(28px, 6vw, 44px);
+  margin:12px 0 6px;
+  letter-spacing:1px;
+}
+.titleCard .sub{color:var(--muted); margin:8px 0 18px}
+.titleCard .hint{color:var(--muted); font-size:13px; margin-top:12px}
+
+/* logo placeholder */
+.logo{width:120px;height:120px;object-fit:cover;border-radius:12px;display:block;margin:0 auto 8px}
+
+/* buttons */
+button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:600}
+.big{font-size:18px;padding:14px 20px;background:linear-gradient(90deg,var(--accent), #ff9e6b); color:#071025}
+.primary{background:linear-gradient(90deg,#6ee7b7,#34d399); color:#022; padding:10px 14px}
+.ghost{background:transparent;color:#cfe9ff;border:1px solid rgba(255,255,255,0.06);padding:8px 12px}
+.small{padding:6px 10px;font-size:13px}
+.row{display:flex;gap:8px;justify-content:center;margin-top:12px}
+
+/* modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.4));z-index:40}
+.modal.hidden{display:none}
+.modalCard{width:min(420px,90%);background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03);text-align:center}
+.modalCard h2{margin:0 0 12px}
+.modalCard input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:8px}
+
+/* HUD */
+.hud{display:flex;justify-content:space-between;align-items:center;padding:10px 28px;color:#e6eef8}
+.nameBadge{background:var(--glass);padding:6px 10px;border-radius:20px;font-weight:600;color:var(--muted)}
+.timer{font-size:20px;background:var(--glass-2);padding:6px 12px;border-radius:10px;font-weight:700}
+.score{font-weight:800;font-size:18px}
+
+/* canvas */
+#gameCanvas{display:block;margin:10px auto;border-radius:12px;background:linear-gradient(180deg,#8fd3ff 0%, #e6f7ff 100%);box-shadow:0 10px 40px rgba(2,6,23,0.6);width:92%;max-width:460px;height:auto}
+
+/* result panel */
+.panel{display:flex;justify-content:center;padding:18px}
+.panel.hidden{display:none}
+.resultCard{width:min(520px,96%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.resultCard h3{margin-top:0}
+.resultCard .buttons{display:flex;gap:8px;margin:8px 0}
+.ranking{margin-top:12px;padding-left:18px;color:#eaf6ff}
+.ranking li{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+
+/* fade-in bubble overlay */
+.bubbleOverlay{position:fixed;left:0;right:0;bottom:0;pointer-events:none;z-index:30}
+.hidden{display:none}
+
+/* responsive tweaks */
+@media (max-width:520px){
+  .titleCard{padding:18px}
+  .logo{width:90px;height:90px}
+  .hud{padding:8px 12px}
 }
