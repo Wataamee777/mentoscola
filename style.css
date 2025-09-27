@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f0f8ff;
+}
+
+#gameCanvas {
+  border: 2px solid #000;
+  display: block;
+  margin: 20px auto;
+  background: #87ceeb; /* 空っぽ背景 */
+}
+
+#scoreBoard {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
